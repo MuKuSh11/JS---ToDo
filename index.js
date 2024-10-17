@@ -90,11 +90,14 @@ function completeDeleteEventHandler(e) {
         const targetTask = clickedItem.parentElement.parentElement;
         targetTask.remove();
         processDeletion(targetTask);
-    }
-    if( clickedItem.classList.contains("task-complete-button") ) {
+    } else if( clickedItem.classList.contains("task-complete-button") ) {
         const targetTask = clickedItem.parentElement.parentElement;
         targetTask.remove();
         processCompletion(targetTask);
+    } else if( clickedItem.classList.contains("task-undo-button") ) {
+        const targetTask = clickedItem.parentElement.parentElement;
+        targetTask.remove();
+        processUndo(targetTask);
     }
 }
 
@@ -130,6 +133,7 @@ function addTaskToList(container, task) {
                 ${task.value}
             </p>
             <div class="task-action-buttons">
+                <button class="task-undo-button fa-solid fa-rotate-left"></button>
                 <button class="task-delete-button fa-solid fa-trash-can"></button>
             </div> 
         `;
@@ -156,6 +160,25 @@ function processDeletion(targetTask) {
         tasksListArray[targetTaskIndex].isDeleted = true;
         const currTask = tasksListArray[targetTaskIndex];
         addTaskToList(deletedTasksContainer, currTask);
+    }
+    updateLocalStorage();
+}
+
+// handle deletion of tasks
+function processUndo(targetTask) {
+    const targetTaskIndex = getTaskIndexFromTaskArray(targetTask);
+    if( tasksListArray[targetTaskIndex].isDeleted == true ) {
+        tasksListArray[targetTaskIndex].isDeleted = false;
+        const currTask = tasksListArray[targetTaskIndex];
+        if(currTask.isCompleted == true ) {
+            addTaskToList(completedTasksContainer, currTask);
+        } else {
+            addTaskToList(todoTasksContainer, currTask);
+        }
+    } else {
+        tasksListArray[targetTaskIndex].isCompleted = false;
+        const currTask = tasksListArray[targetTaskIndex];
+        addTaskToList(todoTasksContainer, currTask);
     }
     updateLocalStorage();
 }
