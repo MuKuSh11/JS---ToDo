@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <h1>To-Do List</h1>
+        <div class="tasks-main-container">
+            <div class="task-input-container">
+                <input class="task-input" type="text" placeholder="Enter task here...">
+                <select name="tasks-priority" id="task-priority-select" required>
+                </select>
+                    <button class="add-button">Add</button>
+            </div>
+            <div class="lists-container">
+                <div class="tasks-list-container">
+                    <h2>ToDo Tasks</h2>
+                    <div class="todo-list-container">
+                        <!-- new tasks here -->
+                        <!-- <div class="task high">
+                            <p class="task-id">
+                                someID
+                            </p>
+                            <p class="task-content">
+                                someValue
+                            </p>
+                            <div class="task-action-buttons">
+                                <button class="task-complete-button fa-solid fa-check"></button>
+                                <button class="task-delete-button fa-solid fa-trash-can"></button>   
+                            </div> 
+                        </div> -->
+                    </div>
+                </div>
+                <div class="additional-list-container">
+                    <div class="completed-tasks">
+                        <h2>Completed Tasks</h2>
+                        <div class="completed-tasks-list-container">
+                            <!-- completed tasks here -->
+                            <!-- <div class="task high">
+                                <p class="task-id">
+                                   someID
+                               </p>
+                               <p class="task-content">
+                                   someValue
+                               </p>
+                               <div class="task-action-buttons">
+                                   <button class="task-complete-button fa-solid fa-check"></button>
+                                   <button class="task-delete-button fa-solid fa-trash-can"></button>   
+                               </div> 
+                           </div> -->
+                        </div>
+                    </div>
+                    <div class="deleted-tasks">
+                        <h2>Deleted Tasks</h2>
+                        <div class="deleted-tasks-list-container">
+                            <!-- deleted tasks here -->
+                            <!-- <div class="task high">
+                                <p class="task-id">
+                                   someID
+                               </p>
+                               <p class="task-content">
+                                   someValue
+                               </p>
+                               <div class="task-action-buttons">
+                                   <button class="task-complete-button fa-solid fa-check"></button>
+                                   <button class="task-delete-button fa-solid fa-trash-can"></button>   
+                               </div> 
+                           </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/911b802dce.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/shortid-dist@1.0.5/dist/shortid-2.2.13.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
