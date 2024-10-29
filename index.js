@@ -5,6 +5,9 @@ const todoTasksContainer = document.querySelector(".todo-list-container");
 const completedTasksContainer = document.querySelector(".completed-tasks-list-container");
 const deletedTasksContainer = document.querySelector(".deleted-tasks-list-container");
 
+const sortPrioritySelect = document.querySelectorAll(".sort-priority-select");
+const filterPrioritySelect = document.querySelectorAll(".filter-priority-select");
+
 const priorities = [ "High", "Medium", "Low"];
 
 let tasksListArray = [];
@@ -69,6 +72,26 @@ function initializePriorityOptionsList() {
 }
 initializePriorityOptionsList();
 
+function initializeFilterAndSort() {
+    for( let i=0 ; i<sortPrioritySelect.length ; i++ ) {
+        priorities.forEach((priority) => {
+            const option = document.createElement("option");
+            option.value = priority;
+            option.innerText = priority;
+            sortPrioritySelect[i].appendChild(option);
+        })
+    }
+    for( let i=0 ; i<filterPrioritySelect.length ; i++ ) {
+        priorities.forEach((priority) => {
+            const option = document.createElement("option");
+            option.value = priority;
+            option.innerText = priority;
+            filterPrioritySelect[i].appendChild(option);
+        })
+    }
+}
+initializeFilterAndSort();
+
 
 addBtn.addEventListener("click", () => {
     const taskValue = taskInput.value.trim();
@@ -88,15 +111,24 @@ function completeDeleteEventHandler(e) {
     const clickedItem = e.target;
     if( clickedItem.classList.contains("task-delete-button") ) {
         const targetTask = clickedItem.parentElement.parentElement;
-        targetTask.remove();
+        targetTask.classList.add("removing");
+        setTimeout(() => {
+            targetTask.remove();
+        }, );
         processDeletion(targetTask);
     } else if( clickedItem.classList.contains("task-complete-button") ) {
         const targetTask = clickedItem.parentElement.parentElement;
-        targetTask.remove();
+        targetTask.classList.add("removing");
+        setTimeout(() => {
+            targetTask.remove();
+        }, 10);
         processCompletion(targetTask);
     } else if( clickedItem.classList.contains("task-undo-button") ) {
         const targetTask = clickedItem.parentElement.parentElement;
-        targetTask.remove();
+        targetTask.classList.add("removing");
+        setTimeout(() => {
+            targetTask.remove();
+        }, 10);
         processUndo(targetTask);
     }
 }
@@ -138,8 +170,11 @@ function addTaskToList(container, task) {
             </div> 
         `;
     }
-
+    taskDiv.classList.add("fade-in");
     container.appendChild(taskDiv);
+    setTimeout(() => {
+        taskDiv.classList.add('appending'); // Trigger the fade-in
+    }, 10);
 }
 
 // handle completion of tasks

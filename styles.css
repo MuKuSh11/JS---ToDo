@@ -121,6 +121,24 @@ h2 {
     gap: 1rem;
 }
 
+.list-actions-container {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;    
+}
+
+.list-actions-container label {
+    font-size: 1.2rem;
+}
+
+.sort-priority-select, .filter-priority-select {
+    border: 1px solid grey;
+    outline: none;
+    width: 7rem;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
 .completed-tasks, .deleted-tasks {
     width: 100%;
     height: 25rem;
@@ -197,9 +215,29 @@ h2 {
 }
 
 .medium {
-    background-color: rgb(245, 202, 123);
+    background-color: rgb(255, 228, 179);
 }
 
 .low {
     background-color: rgb(252, 252, 178);
+}
+
+/* Fade-out animation */
+.fade-out {
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+}
+
+.fade-out.removing {
+    opacity: 0;
+}
+
+/* Fade-in animation */
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+.fade-in.appending {
+    opacity: 1;
 }
